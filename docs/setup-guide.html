@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mekteb — Erst-Einrichtung</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #16a34a; --green-hover: #15803d; --green-light: #bbf7d0;
+      --green-subtle: #f0fdf4; --green-100: #dcfce7; --green-500: #22c55e;
+      --green-600: #16a34a; --green-700: #15803d; --green-800: #166534;
+      --bg: #ffffff; --surface: #fafafa; --fg: #1a1a1a; --fg-muted: #737373;
+      --border: #e5e5e5; --card: #ffffff; --card-border: #e5e5e5;
+      --blue-50: #eff6ff; --blue-600: #2563eb; --blue-400: #60a5fa;
+      --purple-50: #faf5ff; --purple-600: #9333ea; --purple-400: #c084fc;
+      --rose-50: #fff1f2; --rose-600: #e11d48; --amber-500: #f59e0b;
+      --red-500: #ef4444; --radius: 10px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.7; font-size: 15px; min-height: 100vh; }
+
+    .topbar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 10; }
+    .topbar-brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; }
+    .topbar-brand svg { width: 22px; height: 22px; color: var(--green); }
+    .topbar-progress { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--fg-muted); }
+    .progress-bar-mini { width: 120px; height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; }
+    .progress-bar-mini-fill { height: 100%; background: var(--green); border-radius: 3px; width: 0%; transition: width .4s ease; }
+
+    .container { max-width: 800px; margin: 0 auto; padding: 48px 24px 120px; }
+    h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .subtitle { font-size: 16px; color: var(--fg-muted); margin-bottom: 40px; }
+    h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin-top: 48px; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 2px solid var(--green); }
+    h3 { font-size: 16px; font-weight: 600; margin-top: 24px; margin-bottom: 10px; }
+    p { margin-bottom: 12px; }
+    ul, ol { margin: 10px 0 14px 22px; }
+    li { margin-bottom: 6px; }
+
+    .info-box { background: var(--green-subtle); border: 1px solid var(--green-light); border-radius: var(--radius); padding: 16px 20px; margin: 20px 0; }
+    .info-box.blue { background: var(--blue-50); border-color: var(--blue-400); }
+    .info-box.purple { background: var(--purple-50); border-color: var(--purple-400); }
+    .info-box-title { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+    .info-box p { font-size: 14px; margin: 0; }
+
+    .step { display: flex; gap: 14px; margin-bottom: 28px; align-items: flex-start; }
+    .step-checkbox { width: 24px; height: 24px; border: 2px solid var(--border); border-radius: 6px; flex-shrink: 0; margin-top: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .15s; }
+    .step-checkbox:hover { border-color: var(--green); }
+    .step-checkbox.checked { background: var(--green); border-color: var(--green); }
+    .step-checkbox.checked::after { content: '✓'; color: white; font-size: 13px; font-weight: 700; }
+    .step-content { flex: 1; }
+    .step-content strong { display: block; font-size: 15px; margin-bottom: 4px; color: var(--fg); }
+    .step-content p { font-size: 14px; color: var(--fg-muted); margin: 0; }
+    .step-content .sub-checks { margin-top: 8px; padding-left: 0; list-style: none; }
+    .sub-checks li { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--fg-muted); margin-bottom: 5px; }
+    .sub-checks li::before { content: '○'; color: var(--green); font-weight: 700; font-size: 10px; }
+
+    .app-card { border: 1px solid var(--card-border); border-radius: 12px; background: var(--card); overflow: hidden; margin: 16px 0; }
+    .app-card-header { padding: 14px 18px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .app-card-header h3 { font-size: 15px; font-weight: 600; margin: 0; }
+    .app-card-body { padding: 18px; }
+    .app-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; border-radius: 8px; font-size: 13px; font-weight: 500; border: none; cursor: pointer; text-decoration: none; }
+    .app-btn-primary { background: var(--green); color: white; }
+    .app-btn-primary:hover { background: var(--green-hover); }
+    .app-btn-outline { background: transparent; border: 1px solid var(--border); color: var(--fg); }
+
+    .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 16px 0; }
+    .stat-cell { text-align: center; padding: 14px; border-radius: 10px; border: 1px solid var(--border); }
+    .stat-cell .num { font-size: 22px; font-weight: 700; color: var(--green); }
+    .stat-cell .label { font-size: 12px; color: var(--fg-muted); margin-top: 2px; }
+
+    .section-done { opacity: .6; transition: opacity .3s; }
+    .section-done:hover { opacity: 1; }
+
+    @media (max-width: 640px) {
+      .container { padding: 24px 16px 80px; }
+      .stat-row { grid-template-columns: repeat(2, 1fr); }
+      .topbar { padding: 12px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L4 7v6c0 5.25 3.4 10.15 8 11.25C16.6 23.15 20 18.25 20 13V7l-8-5z"/><path d="M9 17h6"/><rect x="9" y="9" width="6" height="4" rx="1"/></svg>
+    Mekteb — Erst-Einrichtung
+  </div>
+  <div class="topbar-progress">
+    <span id="progress-text">0 / 8 erledigt</span>
+    <div class="progress-bar-mini"><div class="progress-bar-mini-fill" id="progress-fill"></div></div>
+  </div>
+</div>
+
+<div class="container">
+  <h1>Moschee einrichten</h1>
+  <p class="subtitle">Diese Checkliste führt Sie durch die Erstkonfiguration — von der Registrierung bis zum ersten Unterrichtstag.</p>
+
+  <!-- SCHritt 1 -->
+  <div class="step" data-step="1">
+    <div class="step-checkbox" onclick="toggle(this)"></div>
+    <div class="step-content">
+      <strong>Registrierung abschließen</strong>
+      <p>Wählen Sie einen Plan, legen Sie Ihre Moschee an und erstellen Sie das Admin-Konto. Nach der Registrierung sind Sie automatisch angemeldet.</p>
+    </div>
+  </div>
+
+  <!-- SCHritt 2 -->
+  <div class="step" data-step="2">
+    <div class="step-checkbox" onclick="toggle(this)"></div>
+    <div class="step-content">
+      <strong>Moschee-Profil vervollständigen</strong>
+      <p>Unter „Einstellungen → Allgemein“ laden Sie ein Logo hoch, hinterlegen die Adresse und wählen Sprache sowie Farbschema.</p>
+      <ul class="sub-checks">
+        <li>Logo hochladen (empfohlen: quadratisch, mind. 256×256 px)</li>
+        <li>Farbe & Logo werden in E-Mails und auf der Anmeldeseite angezeigt</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SCHritt 3 -->
+  <div class="step" data-step="3">
+    <div class="step-checkbox" onclick="toggle(this)"></div>
+    <div class="step-content">
+      <strong>Schuljahr definieren</strong>
+      <p>Unter „Einstellungen → Schuljahr“ legen Sie den aktuellen Zeitraum fest (z. B. 1. September – 30. Juni). Alle Anwesenheiten und Hausaufgaben werden diesem Zeitraum zugeordnet.</p>
+    </div>
+  </div>
+
+  <!-- SCHritt 4 -->
+  <div class="step" data-step="4">
+    <div class="step-checkbox" onclick="toggle(this)"></div>
+    <div class="step-content">
+      <strong>Erste Gruppen anlegen</strong>
+      <p>Gruppen sind das Herzstück der Organisation. Legen Sie unter „Gruppen → Neue Gruppe“ mindestens eine Lerngruppe mit Name, Altersstufe und Wochentagen an.</p>
+      <ul class="sub-checks">
+        <li>Beispiel: „Kinder A (Mo+Mi)“ oder „Jugend (Fr)“</li>
+        <li>Lehrer können nachträglich zugewiesen werden</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SCHritt 5 -->
+  <div class="step" data-step="5">
+    <div class="step-checkbox" onclick="toggle(this)"></div>
+    <div class="step-content">
+      <strong>Lehrkräfte erstellen</strong>
+      <p>Unter „Lehrer → Lehrer hinzufügen“ erzeugen Sie Konten für Ihre Lehrkräfte. Das System versendet automatisch Willkommens-E-Mails mit temporären Passwörtern.</p>
+      <ul class="sub-checks">
+        <li>Lehrer können mehreren Gruppen zugeordnet werden</li>
+        <li>Bei der ersten Anmeldung müssen sie ihr Passwort ändern</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SCHritt 6 -->
+  <div class="step" data-step="6">
+    <div class="step-checkbox" onclick="toggle(this)"></div>
+    <div class="step-content">
+      <strong>Lektionen & Themen aufbauen</strong>
+      <p>Unter „Lektionen“ legen Sie den Unterrichtsstoff an. Sie können Themen und Unterthemen manuell erstellen oder aus vordefinierten Vorlagen importieren.</p>
+      <ul class="sub-checks">
+        <li>Sequenzieller Religionsunterricht, Quran, Gebetslehre etc.</li>
+        <li>Lektionen lassen sich später Hausaufgaben zuordnen</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SCHritt 7 -->
+  <div class="step" data-step="7">
+    <div class="step-checkbox" onclick="toggle(this)"></div>
+    <div class="step-content">
+      <strong>Schüler & Eltern eintragen</strong>
+      <p>Schüler unter „Schüler → Hinzufügen“ anlegen und mit Eltern verknüpfen. Eltern erhalten automatisch Zugriff auf das Elternportal.</p>
+      <ul class="sub-checks">
+        <li>Import per CSV möglich (wenn verfügbar)</li>
+        <li>Mindestens ein Elternteil pro Schüler empfohlen</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SCHritt 8 -->
+  <div class="step" data-step="8">
+    <div class="step-checkbox" onclick="toggle(this)"></div>
+    <div class="step-content">
+      <strong>Kalender & erste Termine</strong>
+      <p>Unter „Kalender“ tragen Sie wichtige Termine ein: Schuljahresbeginn, Feiertage, Elternabende. Alle Benutzer sehen diese Termine in ihrem Portal.</p>
+      <ul class="sub-checks">
+        <li>Termine können mit Teilnehmern (Gruppen, Lehrer, Eltern) verknüpft werden</li>
+        <li>Automatische E-Mail-Benachrichtigung bei neuen Terminen</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-box blue" style="margin-top:32px">
+    <p class="info-box-title">Sie sind startklar!</p>
+    <p>Wenn alle 8 Schritte abgehakt sind, können Sie mit dem regulären Betrieb beginnen: Anwesenheiten erfassen, Hausaufgaben verteilen und den Fortschritt verfolgen.</p>
+  </div>
+
+  <div class="app-card">
+    <div class="app-card-header"><h3>Nächste Schritte</h3></div>
+    <div class="app-card-body">
+      <ul>
+        <li><strong>Demo testen:</strong> Nutzen Sie den Demo-Modus, um alle Funktionen ohne echte Daten auszuprobieren.</li>
+        <li><strong>Prüfungen einrichten:</strong> Falls Sie das Prüfungssystem nutzen möchten, definieren Sie unter „Einstellungen → Prüfungen“ die Kriterien.</li>
+        <li><strong>Plugins erkunden:</strong> Unter „Einstellungen → Plugins“ können Sie zusätzliche Module aktivieren.</li>
+        <li><strong>2FA aktivieren:</strong> Empfohlen für alle Admin-Kontos: Zwei-Faktor-Authentifizierung im Konto-Menü einrichten.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:24px">
+    <p class="info-box-title">Zurück zum Handbuch</p>
+    <p>Detaillierte Anleitungen zu allen Funktionen finden Sie im <a href="index.html" style="color:var(--green);font-weight:500">vollständigen Benutzerhandbuch</a>.</p>
+  </div>
+</div>
+
+<script>
+  function toggle(el) {
+    el.classList.toggle('checked');
+    const step = el.closest('.step');
+    if (el.classList.contains('checked')) {
+      step.classList.add('section-done');
+    } else {
+      step.classList.remove('section-done');
+    }
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const total = document.querySelectorAll('.step-checkbox').length;
+    const checked = document.querySelectorAll('.step-checkbox.checked').length;
+    document.getElementById('progress-text').textContent = checked + ' / ' + total + ' erledigt';
+    document.getElementById('progress-fill').style.width = (checked / total * 100) + '%';
+  }
+</script>
+
+</body>
+</html>

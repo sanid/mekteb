@@ -1,0 +1,54 @@
+name: Bug report
+description: Something behaves differently than it should
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please do not report security issues here — auth bypasses, cross-tenant
+        data leaks and RLS holes belong in a private
+        [security advisory](../../security/advisories/new).
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What you saw, and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Sign in as …
+        2. Go to …
+        3. See …
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options: [Web portal, Mobile app, Database / migrations, Translations, CI, Other]
+    validations:
+      required: true
+  - type: dropdown
+    id: role
+    attributes:
+      label: Which role were you signed in as?
+      options: [Admin, Teacher, Parent, Student, Examiner, Platform admin, Not signed in]
+  - type: dropdown
+    id: locale
+    attributes:
+      label: Locale
+      options: [German (de), English (en), Bosnian (bs), Turkish (tr)]
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: "Local dev / deployed instance, browser or device, OS, Node version"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Redact any real student data before pasting.

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300" role="img" aria-label="Mekteb — mosque education and community platform">
+  <rect width="1200" height="300" fill="#090e0c"/>
+
+  <!-- The mark: the same pointed-arch geometry as the in-app MosqueIcon,
+       scaled 5.2x from its 24-unit box and set on the baseline of the wordmark. -->
+  <g transform="translate(96,80) scale(5.2)" fill="#10b981">
+    <path fill-rule="evenodd" d="M5 21.5V13.8A11 11 0 0 1 12 3.55A11 11 0 0 1 19 13.8V21.5Z M7.6 21.5V13.8A8.4 8.4 0 0 1 12 6.41A8.4 8.4 0 0 1 16.4 13.8V21.5Z"/>
+    <circle cx="12" cy="1.55" r="1.15"/>
+  </g>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif">
+    <text x="240" y="158" font-size="76" font-weight="700" fill="#f2f7f4" letter-spacing="-2.5">Mekteb</text>
+    <text x="244" y="200" font-size="22" font-weight="400" fill="#809085" letter-spacing="0.2">Mosque education &amp; community platform</text>
+  </g>
+
+  <rect x="0" y="297" width="1200" height="3" fill="#10b981"/>
+</svg>

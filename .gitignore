@@ -1,0 +1,118 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+/test-results
+/playwright-report
+/blob-report
+/playwright/.cache
+
+# next.js (monorepo — catch all apps)
+.next/
+/out/
+
+# production
+/build
+/dist
+
+# misc
+.DS_Store
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+!.env.example
+
+# secrets, keys & certificates
+*.pem
+*.key
+*.p8
+*.p12
+*.pfx
+*.jks
+*.crt
+*.cer
+*service-account*.json
+*credentials*.json
+secrets/
+.secrets
+
+# supabase local stack
+/supabase/.branches
+/supabase/.temp
+
+# vercel
+.vercel
+.vercel/
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# dev documentation (one-time reference)
+devdocumentation/
+**/public/devdocumentation/
+
+# one-time scripts & generated data
+**/scripts/ilmihal-formatted/
+**/scripts/format-ilmihal.mjs
+update_translations.js
+
+# claude / local settings
+# (AGENTS.md and CLAUDE.md are committed on purpose — they are the agent
+#  working rules for contributors. MEMORY.md holds private project notes.)
+.claude/
+.mcp.json
+MEMORY.md
+examiner.md
+ios.md
+PRODUCTION_CHECKLIST.md
+SECURITY.md
+
+# docs build (one-time)
+docs/index.html
+backups/
+
+# playwright per-role sessions (written by auth.setup.ts)
+**/e2e/.auth/
+
+# playwright test artifacts
+**/test-results/
+**/playwright-report/
+
+# native build output (generated at prebuild/gradle time)
+**/android/build/
+**/ios/build/
+
+# scratch: book photos used to extract the ilmihal lesson content
+/lessons/
+
+# local env pulled from Vercel (contains live service keys)
+.env.pull
+.env.local
+
+# macOS / editor noise
+.DS_Store
+**/.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# build leftovers
+tsconfig.tsbuildinfo
+**/*.tsbuildinfo

@@ -1,0 +1,8 @@
+.expo/
+dist/
+expo-env.d.ts
+# Prebuild output — configure through app.config.ts, never by hand (AGENTS.md §8)
+/ios
+/android
+.env
+.env*.local

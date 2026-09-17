@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Security vulnerability
+    url: https://github.com/sanid/mekteb/security/advisories/new
+    about: Report auth bypasses, cross-tenant data leaks or RLS holes privately — never as a public issue.
+  - name: Setting up a local environment
+    url: https://github.com/sanid/mekteb#local-development
+    about: Prerequisites, Supabase stack, environment variables and seed logins.

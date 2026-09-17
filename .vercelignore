@@ -1,0 +1,32 @@
+# Dependencies
+node_modules
+.pnp
+
+# Build outputs
+.next
+out
+dist
+build
+
+# The web app is the deploy target; keep only what it needs from the workspace.
+# (packages/i18n MUST stay — the web app imports @mekteb/i18n from it.)
+apps/mobile
+scripts
+# Root handbook only — a bare `docs` also strips apps/web/src/app/[locale]/docs/
+/docs
+
+# README source screenshots — the web app serves its own copy from public/.
+/assets
+
+# Local stack / env (root-anchored: `supabase` would also match
+# apps/web/src/lib/supabase and break the build — see 2026-08-09 deploy)
+/supabase
+.env*
+!.env.example
+
+# Tests & tooling
+test-results
+playwright-report
+coverage
+e2e/.auth
+*.tsbuildinfo
