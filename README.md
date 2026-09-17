@@ -14,7 +14,7 @@ on a native iOS/Android app.
 A **pnpm monorepo** built on **Next.js (App Router)** + **Supabase**
 (PostgreSQL, Auth, Storage) with a shared, fully localised UI catalogue.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sanid/mekteb&root-directory=apps/web&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,SUPABASE_SERVICE_ROLE_KEY,RESEND_API_KEY,EMAIL_FROM,NEXT_PUBLIC_SITE_URL,CRON_SECRET&envDescription=Required%20environment%20variables%20for%20Mekteb%20(Supabase%20keys%2C%20Resend%20email%2C%20site%20URL%2C%20cron%20secret)&envLink=https://github.com/sanid/mekteb/blob/main/apps/web/.env.example&project-name=mekteb&repository-name=mekteb)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/sanid/mekteb&root-directory=apps/web&env=NEXT_PUBLIC_SUPABASE_URL,NEXT_PUBLIC_SUPABASE_ANON_KEY,SUPABASE_SERVICE_ROLE_KEY,RESEND_API_KEY,EMAIL_FROM,NEXT_PUBLIC_SITE_URL,CRON_SECRET,NEXT_PUBLIC_OPERATOR_NAME,NEXT_PUBLIC_OPERATOR_STREET,NEXT_PUBLIC_OPERATOR_POSTAL_CITY,NEXT_PUBLIC_CONTACT_EMAIL&envDescription=Required%20environment%20variables%20for%20Mekteb%20(Supabase%20keys%2C%20Resend%20email%2C%20site%20URL%2C%20cron%20secret%2C%20Impressum%20operator%20details)&envLink=https://github.com/sanid/mekteb/blob/main/apps/web/.env.example&project-name=mekteb&repository-name=mekteb)
 
 ---
 
