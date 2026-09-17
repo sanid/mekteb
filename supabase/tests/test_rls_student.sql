@@ -737,7 +737,18 @@ SELECT is(
      'written_tests',
      'written_test_answers',
      'notification_queue',
-     'gdpr_deletion_log'
+     'gdpr_deletion_log',
+     -- Intentionally readable by every member, students included. This
+     -- carries no student data and is not staff-only, so `is_member`
+     -- alone is the correct gate and an `is_student` branch would be
+     -- redundant.
+     --
+     -- public_library_settings drives the public lesson library, which
+     -- is served to anonymous visitors on its own subdomain through the
+     -- service-role client (apps/web/src/lib/public-library.ts). Its
+     -- contents are published by design; a member reading the row
+     -- discloses nothing that is not already public.
+     'public_library_settings'
    )),
   0,
   'invariant: no SELECT policy gates on is_member without a student branch (outside the staff-only allow-list)'

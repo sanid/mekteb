@@ -1,3 +1,49 @@
 packages:
   - "apps/*"
   - "packages/*"
+overrides:
+  # @tiptap/react pins @tiptap/core to an exact version, so the family has
+  # to move together or the build fails on missing exports. Aligning all
+  # three at 3.31.3 satisfies @blocknote's ^3.13.0 and carries the fix for
+  # GHSA on @tiptap/core (<3.30.5).
+  '@tiptap/core': '3.31.3'
+  '@tiptap/react': '3.31.3'
+  '@tiptap/pm': '3.31.3'
+  # Blanket pin: the range-keyed entries below miss nested copies that
+  # @expo/prebuild-config and @bacons/xcode resolve for themselves.
+  # 0.9.10 -> 0.9.12 is a patch bump on the same minor.
+  '@xmldom/xmldom': '>=0.9.12'
+  '@babel/core@<=7.29.0': '>=7.29.6'
+  '@opentelemetry/core@<2.8.0': '>=2.8.0'
+  '@vitest/mocker@>=2.1.0 <4.1.11': '>=4.1.11'
+  baseline-browser-mapping@>=2.0.0 <2.11.0: '>=2.11.0'
+  # Keep each consumer inside its own major: minimatch v3 needs the v1
+  # default-export API, and an unbounded '>=1.1.16' pulls it up to v5,
+  # whose named-export shape breaks ESLint at runtime.
+  brace-expansion@<1.1.21: '>=1.1.21 <2'
+  brace-expansion@>=2.0.0 <2.1.7: '>=2.1.7 <3'
+  brace-expansion@>=3.0.0 <3.0.9: '>=3.0.9 <4'
+  brace-expansion@>=4.0.0 <5.0.12: '>=5.0.12'
+  browserslist@<=4.28.6: '>=4.28.7'
+  decode-uri-component@<=0.4.2: '>=0.5.0'
+  fast-uri@>=3.0.0 <3.1.3: '>=3.1.3'
+  fast-uri@>=3.0.0 <3.1.5: '>=3.1.5'
+  fast-uri@>=3.0.0 <3.1.6: '>=3.1.6'
+  fast-uri@>=3.0.0 <=3.1.0: '>=3.1.1'
+  fast-uri@>=3.0.0 <=3.1.1: '>=3.1.2'
+  fast-uri@>=3.0.0 <=3.1.3: '>=3.1.4'
+  form-data@>=4.0.0 <4.0.6: '>=4.0.6'
+  js-yaml@>=4.0.0 <4.3.0: '>=4.3.0'
+  js-yaml@>=4.0.0 <4.3.1: '>=4.3.1'
+  js-yaml@>=4.0.0 <4.3.2: '>=4.3.2'
+  js-yaml@>=4.0.0 <=4.1.1: '>=4.2.0'
+  nanoid@<3.3.16: '>=3.3.16'
+  nanoid@<3.3.18: '>=3.3.18'
+  postcss@<=8.5.17: '>=8.5.18'
+  postcss@<=8.5.22: '>=8.5.23'
+  serialize-javascript@<=7.0.2: '>=7.0.3'
+  serialize-javascript@>=5.0.0 <7.0.5: '>=7.0.5'
+  uuid@<11.1.1: '>=11.1.1'
+  vitest@>=2.1.0 <4.1.11: '>=4.1.11'
+  ws@>=8.0.0 <8.20.1: '>=8.20.1'
+  ws@>=8.0.0 <8.21.0: '>=8.21.0'
