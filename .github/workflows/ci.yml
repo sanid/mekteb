@@ -39,6 +39,13 @@ jobs:
       - name: Unit tests
         run: pnpm test
 
+      # expo-router's typedRoutes generates .expo/types/router.d.ts, which is
+      # generated output and therefore gitignored. Without it tsc falls back to
+      # an empty route tree and every router.replace()/segments[] access fails.
+      # This regenerates it without starting Metro.
+      - name: Generate Expo router types
+        run: pnpm --filter mobile exec expo customize tsconfig.json
+
       - name: Mobile typecheck
         run: pnpm --filter mobile typecheck
 
